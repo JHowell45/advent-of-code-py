@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from collections import defaultdict
+
 from pydantic import BaseModel
 
 
@@ -41,4 +43,11 @@ class LocationSearch(BaseModel):
         return distance
 
     def similarity_score(self) -> int:
-        pass
+        score: int = 0
+        lookup = defaultdict(int)
+        for v in self.right:
+            lookup[v] += 1
+
+        for v in self.left:
+            score += v * lookup[v] or 0
+        return score
