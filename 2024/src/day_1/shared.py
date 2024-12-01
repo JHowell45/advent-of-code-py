@@ -22,3 +22,9 @@ class LocationSearch(BaseModel):
             instance.add_right(index, int(right))
 
         return instance
+
+    def total_distance(self) -> int:
+        distance = 0
+        for left, right in zip(self.left, self.right):
+            distance += abs(left - right)
+        return distance
