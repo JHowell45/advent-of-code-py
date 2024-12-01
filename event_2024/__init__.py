@@ -1,6 +1,7 @@
 import click
 
 from src.day_1.part_a import part_a
+from src.day_1.part_b import part_b
 
 
 @click.command()
@@ -13,7 +14,7 @@ def aoc(day: int, part: str):
                 case "a":
                     part_a()
                 case "b":
-                    pass
+                    part_b()
         case _:
             print(f"Day {day} has not yet been implemented!")
 
