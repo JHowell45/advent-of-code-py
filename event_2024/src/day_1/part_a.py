@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from src.day_1.shared import LocationSearch
+from shared import LocationSearch
 
 
 def part_a() -> None:
@@ -10,3 +10,6 @@ def part_a() -> None:
         for index, line in enumerate(f):
             search.add_location_pair(index, line)
     print(f"The total distance is: {search.total_distance()}")
+
+
+part_a()

@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from src.day_1.shared import LocationSearch
+from shared import LocationSearch
 
 
 def part_b() -> None:
@@ -10,3 +10,6 @@ def part_b() -> None:
         for index, line in enumerate(f):
             search.add_location_pair(index, line)
     print(f"The similarity score is: {search.similarity_score()}")
+
+
+part_b()
