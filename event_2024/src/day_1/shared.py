@@ -39,3 +39,6 @@ class LocationSearch(BaseModel):
         for left, right in zip(self.left, self.right):
             distance += abs(left - right)
         return distance
+
+    def similarity_score(self) -> int:
+        pass
