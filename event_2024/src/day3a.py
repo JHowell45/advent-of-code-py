@@ -9,7 +9,7 @@ def main(file):
     for line in findall("(mul\\(\\d+,\\d+\\))", file.read()):
         [a, b] = findall("(\\d+)", line)
         total += int(a) * int(b)
-    print(f"Total mul(): {total}")
+    print(f"Total multiplications: {total}")
 
 
 if __name__ == "__main__":
