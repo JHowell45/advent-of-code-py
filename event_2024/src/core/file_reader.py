@@ -1,7 +1,12 @@
-from io import TextIOWrapper
-from typing import Generator
+from typing import Callable
 
 
-def read(day: int) -> Generator[TextIOWrapper, None, None]:
-    with open(f"puzzle_inputs/day{day}.txt") as f:
-        yield f
+def get_file(day: int):
+    def wrapper(f: Callable):
+        def inner(*args, **kwargs):
+            with open(f"puzzle_inputs/day{day}.txt") as file:
+                return f(*args, **kwargs, file=file)
+
+        return inner
+
+    return wrapper
