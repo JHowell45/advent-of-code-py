@@ -5,9 +5,12 @@ from core.file_reader import get_file
 
 @get_file(3)
 def main(file) -> None:
+    print(f"Total enabled multiplications: {enabled_mul_total(file.read())}")
+
+
+def enabled_mul_total(text: str) -> int:
     total: int = 0
     swap: bool = False
-    text: str = file.read()
     pattern: str = "(do\\(\\))|(don't\\(\\))"
     prog = compile(pattern)
 
@@ -16,24 +19,16 @@ def main(file) -> None:
     for point in prog.finditer(text):
         if swap:
             if point.group(0) == "do()":
-                print(point)
                 start = point.end()
                 swap = not swap
         else:
             if point.group(0) == "don't()":
-                print(point)
-                end = point.start()
+                end = point.start() + 1
+                total += mul_total(text[start:end])
                 swap = not swap
-                temp = text[start:end]
-                print()
-                print()
-                print(start)
-                print(end)
-                # print(temp)
-                print()
-                print()
-                total += mul_total(temp)
-    print(f"Total enabled multiplications: {total}")
+    if not swap:
+        total += mul_total(text[start:])
+    return total
 
 
 def mul_total(data: str) -> int:
