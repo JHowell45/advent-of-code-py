@@ -4,7 +4,7 @@ from core.file_reader import get_file
 
 
 @get_file(3)
-def main(file):
+def main(file) -> None:
     total = 0
     for line in findall("(mul\\(\\d+,\\d+\\))", file.read()):
         [a, b] = findall("(\\d+)", line)
